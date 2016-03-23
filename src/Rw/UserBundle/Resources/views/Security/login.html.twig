@@ -1,7 +1,12 @@
 {# src/Rw/UserBundle/Resources/views/Security/login.html.twig #}
 
 {% extends "RwUserBundle::layout.html.twig" %}
-
+{% block rwmenublog %}	
+	<h3>Menu utilisateur</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwUserBundle:Security:usermenu.html.twig" %}
+	</ul>
+{% endblock %}
 {% block body %}
 <div class="well">
 	<h3>Saisie de vos identifiants :</h3>

@@ -18,7 +18,7 @@
 				<h1 class="titre_site">
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('logout') }}">logout</a>
-				 <p class="pconnect pull-right">Bonjour User !</p>
+				 <p class="pconnect pull-right">Bonjour {{ app.user.username }} !</p>
 				{% else %}
 				<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('login') }}">login</a>
 				{% endif %}	
