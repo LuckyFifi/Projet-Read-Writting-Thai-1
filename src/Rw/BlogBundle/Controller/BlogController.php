@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Rw\BlogBundle\Entity\Billet;
 use Rw\BlogBundle\Form\BilletType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class BlogController extends Controller
 {
@@ -67,6 +68,11 @@ class BlogController extends Controller
 	}
 	public function addAction()
 	{
+	// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
+    if (!$this->get('security.context')->isGranted('ROLE_AUTEUR')) {
+		// Sinon on déclenche une exception « Accès interdit »
+		throw new AccessDeniedException('Accès limité aux auteurs.');
+    }
 		// On crée un objet Billet
 		$billet = new Billet();
 		// champs préremplis
