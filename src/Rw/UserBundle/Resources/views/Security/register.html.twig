@@ -1,0 +1,14 @@
+{# src/Rw/UserBundle/Resources/views/register.html.twig #}
+
+{% extends "RwUserBundle::layout.html.twig" %}
+
+{% block rwmenublog %}	
+	<h3>Menu utilisateur</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwUserBundle:Security:usermenu.html.twig" %}
+	</ul>
+{% endblock %}
+
+{% block fos_user_content %}
+	{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+{% endblock fos_user_content %}
