@@ -1,0 +1,43 @@
+{% extends "RwUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+<div class="well">
+	<h3>Saisie de vos identifiants :</h3>
+
+	<form action="{{ path("fos_user_security_check") }}" method="post">
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+		<br />
+		<div class="row">
+			<div class="form-group">
+				<label for="username" class="col-lg-3 control-label">{{ 'Nom d\'utilisateur'|trans({}, 'FOSUserBundle') }}</label>
+				<div class="col-lg-9">
+					<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="form-group">
+				<label for="username" class="col-lg-3 control-label">{{ 'Mot de passe'|trans({}, 'FOSUserBundle') }}</label>
+				<div class="col-lg-9">
+					<input type="password" id="password" name="_password" required="required" />
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="form-group">
+				<label for="username" class="col-lg-3 control-label">{{ 'Se souvenir de moi'|trans({}, 'FOSUserBundle') }}</label>
+				<div class="col-lg-9">
+					<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+				</div>
+			</div>
+		</div>
+		<br />
+		<input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'Se connecter'|trans({}, 'FOSUserBundle') }}" />
+	</form>
+</div>
+{% endblock fos_user_content %}
