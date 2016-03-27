@@ -21,6 +21,11 @@ class Billet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="Rw\BlogBundle\Entity\Comment", mappedBy="billet")
+     */
+    private $comments; // Ici comments prend un « s », car un billet a plusieurs commentaires !
 
     /**
 	 * @var \DateTime
@@ -57,6 +62,7 @@ class Billet
 	{
 		// Par défaut, la date du billet est la date d'aujourd'hui
 		$this->date = new \Datetime(); 
+		$this->comments = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
     /**
@@ -155,5 +161,38 @@ class Billet
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Rw\BlogBundle\Entity\Comment $comments
+     * @return Billet
+     */
+    public function addComment(\Rw\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+		$comments->setBillet($this); 
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Rw\BlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Rw\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

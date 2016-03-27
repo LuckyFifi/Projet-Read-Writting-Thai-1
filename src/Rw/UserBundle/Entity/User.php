@@ -27,4 +27,14 @@ class User extends BaseUser
 	parent::__construct();
     $this->roles = array('ROLE_USER');
   }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

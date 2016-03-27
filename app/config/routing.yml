@@ -1,9 +1,6 @@
 rw_blog:
     resource: "@RwBlogBundle/Resources/config/routing.yml"
     prefix:   /blog
-rw_user:
-    path:   /adduser
-    defaults:  { _controller: RwUserBundle:Security:add }
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 fos_user_profile:
