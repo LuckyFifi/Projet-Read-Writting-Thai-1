@@ -124,6 +124,7 @@ class BlogController extends Controller
 			$comment->setUser($user);
 		}		
 		$comment->setBillet($billet);
+		$comment->setAuthor($user);
 		$form = $this->createForm(new CommentType, $comment);
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
