@@ -49,7 +49,7 @@ class Comment
 
 	public function __construct()
     {
-		$this->date = new \Datetime(); // Par défaut, la date de l'article est la date d'aujourd'hui
+		$this->date = new \Datetime();
     }
 	
     /**

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BilletType extends AbstractType
+class CommentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,6 @@ class BilletType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', 'date')
-            ->add('title', 'text')
-            ->add('author', 'text')
             ->add('content', 'textarea')
         ;
     }
@@ -28,7 +25,7 @@ class BilletType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rw\BlogBundle\Entity\Billet'
+            'data_class' => 'Rw\BlogBundle\Entity\Comment'
         ));
     }
 
@@ -37,6 +34,6 @@ class BilletType extends AbstractType
      */
     public function getName()
     {
-        return 'rw_blogbundle_billet';
+        return 'rw_blogbundle_comment';
     }
 }

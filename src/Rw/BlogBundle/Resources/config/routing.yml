@@ -28,3 +28,8 @@ rwblog_delete:
     defaults:  { _controller: RwBlogBundle:Blog:delete }
     requirements:
         id:  \d+
+rwblog_add_comment:
+    path:  /comment/{id}
+    defaults: { _controller: RwBlogBundle:Blog:addComment }
+    requirements:
+        id:      \d+

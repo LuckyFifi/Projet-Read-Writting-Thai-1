@@ -8,7 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Rw\BlogBundle\Entity\Billet;
+use Rw\BlogBundle\Entity\Comment;
 use Rw\BlogBundle\Form\BilletType;
+use Rw\BlogBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -52,8 +54,8 @@ class BlogController extends Controller
 	{
 		// On récupère le repository
 		$repository = $this->getDoctrine()
-						->getManager()
-						->getRepository('RwBlogBundle:Billet');
+					   ->getManager()
+					   ->getRepository('RwBlogBundle:Billet');
 		// On récupère l'entité correspondant à l'id $id
 		$billet = $repository->find($id);
 		// $billet est une instance de Rw\BlogBundle\Entity\Billet
@@ -62,16 +64,18 @@ class BlogController extends Controller
 		{
 			throw $this->createNotFoundException('Billet[id='.$id.'] inexistant.');
 		}
+		$list_comments = $billet->getComments();
 		return $this->render('RwBlogBundle:Blog:view.html.twig', array(
-			'billet' => $billet
+			'billet' => $billet,
+			'comments' => $list_comments
 		));
 	}
 	public function addAction()
 	{
 	// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
-    if (!$this->get('security.context')->isGranted('ROLE_AUTEUR')) {
+    if (!$this->get('security.context')->isGranted('ROLE_USER')) {
 		// Sinon on déclenche une exception « Accès interdit »
-		throw new AccessDeniedException('Accès limité aux auteurs.');
+		throw new AccessDeniedException('Accès limité aux personnes connectées.');
     }
 		// On crée un objet Billet
 		$billet = new Billet();
@@ -101,6 +105,37 @@ class BlogController extends Controller
 		// - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
 		// - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
 		return $this->render('RwBlogBundle:Blog:add.html.twig', array(
+		'form' => $form->createView(),
+		));
+	}
+	public function addCommentAction(Billet $billet)
+	{
+		// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
+		if (!$this->get('security.context')->isGranted('ROLE_USER')) {
+			// Sinon on déclenche une exception « Accès interdit »
+			throw new AccessDeniedException('Accès limité aux personnes connectées.');
+		}
+		$user = $this->getUser();
+		$comment = new Comment();
+		if (null === $user) {
+			// Ici, l'utilisateur est anonyme ou l'URL n'est pas derrière un pare-feu
+			throw new AccessDeniedException('Accès limité aux personnes connectées.');
+		} else {
+			$comment->setUser($user);
+		}		
+		$comment->setBillet($billet);
+		$form = $this->createForm(new CommentType, $comment);
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			if ($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($comment);
+				$em->flush();
+				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
+			}
+		}
+		return $this->render('RwBlogBundle:Blog:addcomment.html.twig', array(
 		'form' => $form->createView(),
 		));
 	}

@@ -22,5 +22,11 @@
 <div class="well">
     {{ billet.content }}
 </div>
-
+<ul>
+  {% for comment in comments %}
+    <li class="well">{{ comment.content }}</li>
+  {% else %}
+    <li  class="well">Pas de commentaire trouvé.</li>
+  {% endfor %}
+</ul
 {% endblock %}
