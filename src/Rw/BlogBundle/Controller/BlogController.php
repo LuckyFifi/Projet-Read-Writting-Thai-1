@@ -25,13 +25,11 @@ class BlogController extends Controller
 		}
 		$repository = $this->getDoctrine()
 						->getManager()
-						->getRepository('RwBlogBundle:Billet');
-						
+						->getRepository('RwBlogBundle:Billet');						
 		$billets = $repository->findBy(array('author' => 'LuckyFifi'),
                                      array('date' => 'desc'),
                                      3,
-                                     0);
-		
+                                     0);		
 		return $this->render('RwBlogBundle:Blog:index.html.twig', array(
 		'billets' => $billets
 		));
@@ -42,9 +40,7 @@ class BlogController extends Controller
 		$repository = $this->getDoctrine()
 						->getManager()
 						->getRepository('RwBlogBundle:Billet');
-
-		$billets = $repository->findAll();
-		
+		$billets = $repository->findAll();	
 		return $this->render('RwBlogBundle:Blog:list.html.twig', array(
 		'billets' => $billets
 		));
@@ -70,6 +66,7 @@ class BlogController extends Controller
 			'comments' => $list_comments
 		));
 	}
+	
 	public function addAction()
 	{
 	// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
@@ -108,6 +105,7 @@ class BlogController extends Controller
 		'form' => $form->createView(),
 		));
 	}
+	
 	public function addCommentAction(Billet $billet)
 	{
 		// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
@@ -125,6 +123,8 @@ class BlogController extends Controller
 		}		
 		$comment->setBillet($billet);
 		$comment->setAuthor($user);
+		// création de la liste des commentaires pour la vue twig
+		$list_comments = $billet->getComments(); //
 		$form = $this->createForm(new CommentType, $comment);
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
@@ -138,6 +138,8 @@ class BlogController extends Controller
 		}
 		return $this->render('RwBlogBundle:Blog:addcomment.html.twig', array(
 		'form' => $form->createView(),
+		'billet' => $billet,
+		'comments' => $list_comments 
 		));
 	}
 }

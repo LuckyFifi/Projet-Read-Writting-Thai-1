@@ -1,0 +1,16 @@
+{# src/Rw/BlogBundle/Resources/views/Blog/billet.html.twig #}
+
+<h2>{{ billet.title }}</h2>
+</br>
+<i>Par {{ billet.author }}, le {{ billet.date|date('d/m/Y') }}</i>
+
+<div class="well">
+	{{ billet.content }}
+</div>
+
+{% for comment in comments %}
+	<i>Par {{ comment.author }} le {{ comment.date|date('d/m/Y') }} à {{ comment.date|date ('H:i:s') }}</i>
+	<p class="well"> {{ comment.content }} </p>
+{% else %}
+	<p  class="well">Pas de commentaire trouvé.</p>
+{% endfor %}
