@@ -50,8 +50,8 @@ class BlogController extends Controller
 	{
 		// On récupère le repository
 		$repository = $this->getDoctrine()
-					   ->getManager()
-					   ->getRepository('RwBlogBundle:Billet');
+						   ->getManager()
+					       ->getRepository('RwBlogBundle:Billet');
 		// On récupère l'entité correspondant à l'id $id
 		$billet = $repository->find($id);
 		// $billet est une instance de Rw\BlogBundle\Entity\Billet
@@ -140,6 +140,45 @@ class BlogController extends Controller
 		'form' => $form->createView(),
 		'billet' => $billet,
 		'comments' => $list_comments 
+		));
+	}
+	
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+     */ 
+	public function deleteAction($id)
+	{
+		// On récupère le repository
+		$em = $this->getDoctrine()->getManager();
+		$repository = $em->getRepository('RwBlogBundle:Billet');
+		// On récupère l'entité correspondant à l'id $id
+		$billet = $repository->find($id);
+		// $billet est une instance de Rw\BlogBundle\Entity\Billet
+		// Ou null si aucun billet n'a été trouvé avec l'id $id
+		if($billet === null)
+		{
+			throw $this->createNotFoundException('Billet[id='.$id.'] inexistant.');
+		}
+		// On crée un formulaire vide, qui ne contiendra que le champ CSRF
+		// Cela permet de protéger la suppression d'article contre cette faille
+		$form = $this->createFormBuilder()->getForm();
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			if ($form->isValid()) { // Ici, isValid ne vérifie donc que le CSRF
+				// suppression du billet
+				$em->remove($billet);
+				$em->flush(); // Exécute un DELETE sur $billet
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', 'Billet bien supprimé');
+		        // Puis on redirige vers l'accueil
+				return $this->redirect($this->generateUrl('rwblog_home'));
+			}
+		}
+		// Si la requète est en GET, on affiche une page de confirmation avant de supprimer
+		return $this->render('RwBlogBundle:Blog:delete.html.twig', array(
+		'billet' => $billet,
+		'form'    => $form->createView()
 		));
 	}
 }

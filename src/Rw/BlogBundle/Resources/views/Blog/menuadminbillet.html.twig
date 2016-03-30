@@ -6,7 +6,7 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 	<a type="button" class="btn btn-success"  href="{{ path('rwblog_view', { 'id': billet.id }) }}">Modifiez le billet</a>
-	<a type="button" class="btn btn-danger"  href="{{ path('rwblog_view', { 'id': billet.id }) }}">Supprimez le billet</a>
+	<a type="button" class="btn btn-danger"  href="{{ path('rwblog_delete', { 'id': billet.id }) }}">Supprimez le billet</a>
 {% endif %}
 
 {% if is_granted('ROLE_USER') %}

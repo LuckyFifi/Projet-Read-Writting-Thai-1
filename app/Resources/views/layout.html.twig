@@ -16,13 +16,14 @@
 		<div class="container">
 			<header class="row">
 				<h1 class="titre_site">
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_logout') }}">logout</a>
-				 <p class="pconnect pull-right">Bonjour {{ app.user.username }} !</p>
-				{% else %}
-				<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_login') }}">login</a>
-				{% endif %}	
-				<a href="{{ path('rwblog_home') }}">WWW.LIRELETHAILANDAIS.COM</a></h1> 
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_logout') }}">Deconnexion</a>
+					 <p class="pconnect pull-right">Bonjour {{ app.user.username }} !</p>
+					{% else %}
+					<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_login') }}">Connection</a>
+					{% endif %}	
+					<a href="{{ path('rwblog_home') }}">WWW.LIRELETHAILANDAIS.COM</a>
+				</h1> 
 				<img id="image_header" src="/site/images/udon_thani_img1.png" alt="Udon Thani" />
 				<nav>
 					<a class="nav_main" href="{{ path('rwblog_home') }}" >Blog</a>
@@ -32,7 +33,7 @@
 					<a class="nav_main" href="#">Dictionnaire</a>
 				</nav> 
 			</header>
-			<h1>
+			<h1 class="titre_bundle">
 				{% block title_bundle %}
 				{% endblock %}
 			</h1>

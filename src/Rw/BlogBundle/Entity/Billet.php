@@ -23,7 +23,7 @@ class Billet
     private $id;
 	
 	/**
-     * @ORM\OneToMany(targetEntity="Rw\BlogBundle\Entity\Comment", mappedBy="billet")
+     * @ORM\OneToMany(targetEntity="Rw\BlogBundle\Entity\Comment", mappedBy="billet", cascade={"remove"})
      */
     private $comments; // Ici comments prend un « s », car un billet a plusieurs commentaires !
 
