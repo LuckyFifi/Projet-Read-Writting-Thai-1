@@ -1,19 +1,22 @@
-{# src/Rw/BlogBundle/Resources/views/Blog/view.html.twig #}
+{# src/Rw/BlogBundle/Resources/views/Blog/editcomment.html.twig #}
 
 {% extends "RwBlogBundle::layout.html.twig" %}
 
 {% block title %}
-	Lecture d'un billet - {{ parent() }}
+  Modifier un commentaire - {{ parent() }}
 {% endblock %}
 
 {% block rwmenublog %}	
 	<h3>Le menu du blog</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
-		{% include "RwBlogBundle:Blog:menuaddcomment.html.twig" %}
 	</ul>
 {% endblock %}
 
 {% block rwblog_body %}
-	{% include "RwBlogBundle:Blog:billetcomments.html.twig" %}
+	<h2>Modifier un commentaire</h2>
+	</br>
+	{% include "RwBlogBundle:Blog:formulairecomment.html.twig" %}
+	{# include "RwBlogBundle:Blog:billetcomments.html.twig" #}
+	
 {% endblock %}

@@ -33,3 +33,8 @@ rwblog_add_comment:
     defaults: { _controller: RwBlogBundle:Blog:addComment }
     requirements:
         id:      \d+
+rwblog_edit_comment:
+    path:  /comment/edit/{id}
+    defaults: { _controller: RwBlogBundle:Blog:editComment }
+    requirements:
+        id:      \d+

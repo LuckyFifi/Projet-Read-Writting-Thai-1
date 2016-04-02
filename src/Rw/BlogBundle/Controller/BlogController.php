@@ -184,8 +184,61 @@ class BlogController extends Controller
 	}
 	
 	/**
-	 * @Security("has_role('ROLE_ADMIN')")
+	 * @Security("has_role('ROLE_USER')")
      */ 
+	public function editCommentAction($id)
+	{
+		// On récupère le repository
+		$em = $this->getDoctrine()->getManager();
+		$repository = $em->getRepository('RwBlogBundle:Comment');
+		// On récupère l'entité correspondant à l'id $id
+		$comment = $repository->find($id);
+		$billet = $comment->getBillet();
+		// $billet est une instance de Rw\BlogBundle\Entity\Billet
+		// Ou null si aucun billet n'a été trouvé avec l'id $id
+		if($comment === null)
+		{
+			throw $this->createNotFoundException('Comment[id='.$id.'] inexistant.');
+		}
+		$user = $this->getUser();
+		$auteur = $comment->getAuthor();
+		// On vérifie que l'utilisateur est bien l'auteur du commentaire
+		if ($user != $auteur ) {
+			// Sinon on vérifie que l'utilisateur dispose bien du rôle ROLE_ADMIN
+			if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+				// Sinon on déclenche une exception « Accès interdit »
+				throw new AccessDeniedException('Accès limité à l\'auteur de ce commentaire...');
+			}
+		}
+		// On crée le formulaire
+		$form = $this->createForm(new CommentType, $comment);	
+		// On récupère la requête
+		$request = $this->get('request');
+		// On vérifie qu'elle est de type POST
+		if ($request->getMethod() == 'POST') {
+			// On fait le lien Requête <-> Formulaire
+			// À partir de maintenant, la variable $billet contient les valeurs entrées dans le formulaire par le visiteur
+			$form->bind($request);
+			// On vérifie que les valeurs entrées sont correctes
+			// (Nous verrons la validation des objets en détail dans le prochain chapitre)
+			if ($form->isValid()) {
+				// On l'enregistre notre objet $billet dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($comment);
+				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', 'Le commentaire a bien été modifié !');
+				// On redirige vers la page de visualisation du commentaire modifié
+				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
+			}
+		}
+		// À ce stade :
+		// - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
+		// - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
+		return $this->render('RwBlogBundle:Blog:editComment.html.twig', array(
+		'form' => $form->createView(),
+		));
+	}
 	public function editAction($id)
 	{
 		// On récupère le repository

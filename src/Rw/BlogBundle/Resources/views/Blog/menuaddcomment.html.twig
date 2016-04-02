@@ -1,4 +1,4 @@
-{# src/Rw/BlogBundle/Resources/views/Blog/blogmenu.html.twig #}
+{# src/Rw/BlogBundle/Resources/views/Blog/menuaddcomment.html.twig #}
 {% if is_granted('ROLE_USER') %}
 	<li><a href="{{ path('rwblog_add_comment', { 'id': billet.id }) }}">Ajouter un commentaire</a></li>
 {% endif %}

@@ -1,0 +1,12 @@
+{# src/Rw/BlogBundle/Resources/views/Blog/menuadmincomment.html.twig #}
+
+{% if is_granted('ROLE_ADMIN') %}
+	<a type="button" class="btn btn-success"  href="{{ path('rwblog_edit_comment', { 'id': comment.id }) }}">Modifiez le commentaire</a>
+	<a type="button" class="btn btn-danger"  href="{{ path('rwblog_home', { 'id': billet.id }) }}">Supprimez le commentaire</a>
+{% elseif is_granted('ROLE_USER') and app.user == comment.author %}
+	<a type="button" class="btn btn-success"  href="{{ path('rwblog_edit_comment', { 'id': comment.id }) }}">Modifiez votre commentaire</a>
+{% endif %}
+
+{% if is_granted('ROLE_USER') %}
+	<br /><br />
+{% endif %}
