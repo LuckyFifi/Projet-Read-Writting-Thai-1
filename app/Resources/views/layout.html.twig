@@ -38,6 +38,18 @@
 				{% endblock %}
 			</h1>
 			<hr>
+			{# On affiche les messages flash que définissent les contrôleurs du bundle #}
+			{% for key, messages in app.session.flashbag.all() %}
+				
+				{% for message in messages %}
+					<div class="alert alert-danger alert-{{ key }}">
+						{{ message|trans({}, 'FOUserBundle') }}
+					</div>
+				{% endfor %}
+				
+			{% endfor %}
+			
+			
 			<div class="row">
 				<div id="menu" class="col-sm-3 col-xs-12" >
 					{% block menu %}

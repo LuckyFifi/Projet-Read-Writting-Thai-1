@@ -25,11 +25,8 @@ class BlogController extends Controller
 		}
 		$repository = $this->getDoctrine()
 						->getManager()
-						->getRepository('RwBlogBundle:Billet');						
-		$billets = $repository->findBy(array('author' => 'LuckyFifi'),
-                                     array('date' => 'desc'),
-                                     3,
-                                     0);		
+						->getRepository('RwBlogBundle:Billet');	
+		$billets = $repository->myFindAll();
 		return $this->render('RwBlogBundle:Blog:index.html.twig', array(
 		'billets' => $billets
 		));
@@ -40,7 +37,7 @@ class BlogController extends Controller
 		$repository = $this->getDoctrine()
 						->getManager()
 						->getRepository('RwBlogBundle:Billet');
-		$billets = $repository->findAll();	
+		$billets = $repository->myFindAll();		
 		return $this->render('RwBlogBundle:Blog:list.html.twig', array(
 		'billets' => $billets
 		));
@@ -94,6 +91,8 @@ class BlogController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($billet);
 				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', 'Le billet a bien été enregistré !');
 				// On redirige vers la page de visualisation du billet nouvellement créé
 				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
 			}
@@ -133,6 +132,8 @@ class BlogController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($comment);
 				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', 'Le commentaire a bien été enregistré !');
 				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
 			}
 		}
@@ -170,7 +171,7 @@ class BlogController extends Controller
 				$em->remove($billet);
 				$em->flush(); // Exécute un DELETE sur $billet
 				// On définit un message flash
-				$this->get('session')->getFlashBag()->add('info', 'Billet bien supprimé');
+				$this->get('session')->getFlashBag()->add('info', 'Le billet a bien été supprimé !');
 		        // Puis on redirige vers l'accueil
 				return $this->redirect($this->generateUrl('rwblog_home'));
 			}
@@ -214,6 +215,8 @@ class BlogController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($billet);
 				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', 'Le billet a bien été modifié !');
 				// On redirige vers la page de visualisation du billet nouvellement créé
 				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
 			}

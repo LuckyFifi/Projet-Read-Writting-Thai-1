@@ -18,16 +18,22 @@
 	</br>
 		<ul>
 			{% for billet in billets %}
-			<li>
+			<p>
 				<a href="{{ path('rwblog_view', {'id': billet.id}) }}">{{ billet.title }}</a>
 				par {{ billet.author }},
 				le {{ billet.date|date('d/m/Y') }}
-			</li>
+			</p>
+			{% if billet.comments | length > 1 %}
+				<p>{{ billet.comments | length }} commentaires</p>
+			{% else %}
+				<p>{{ billet.comments | length }} commentaire</p>
+			{% endif %}
 			<div class="well">
 				<p>{{ billet.content }}</p>
 			</div>
+			<br />
 			{% else %}
 			<li>Pas (encore !) de billets</li>
-			{% endfor %}
+			{% endfor %}		
 		</ul>
 {% endblock %}

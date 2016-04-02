@@ -34,6 +34,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+	 * @Assert\NotBlank()
      */
     private $content;
 
