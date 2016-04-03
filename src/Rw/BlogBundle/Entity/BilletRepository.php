@@ -3,6 +3,7 @@
 namespace Rw\BlogBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * BilletRepository
@@ -12,20 +13,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class BilletRepository extends EntityRepository
 {
-	public function myFindAll()
+	public function getBillets($nombreParPage, $page)
 	{
-		$queryBuilder = $this->createQueryBuilder('a')
-			->leftJoin('a.comments', 'com')
+		if ($page < 1) {
+			// On déclenche une exception NotFoundHttpException, cela va afficher
+			// une page d'erreur 404 (qu'on pourra personnaliser plus tard d'ailleurs)
+			throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
+		}
+		$query = $this->createQueryBuilder('b')
+			->leftJoin('b.comments', 'com')
 			->addSelect('com')
+			->orderBy('b.date', 'DESC')
+			->getQuery()
 		;
-		$queryBuilder
-			->orderBy('a.date', 'DESC')
-		;
-		// On récupère la Query à partir du QueryBuilder
-		$query = $queryBuilder->getQuery();
-		// On récupère les résultats à partir de la Query
-		$results = $query->getResult();
-		// On retourne ces résultats
-		return $results;
+		// On définit le billet à partir duquel commencer la liste
+		$query->setFirstResult(($page-1) * $nombreParPage)
+		// Ainsi que le nombre de billets à afficher
+			->setMaxResults($nombreParPage);
+		// Enfin, on retourne l'objet Paginator correspondant à la requête construite
+		return new Paginator($query);
 	}
 }

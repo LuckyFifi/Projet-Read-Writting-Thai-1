@@ -16,24 +16,35 @@
 {% block rwblog_body %}		
 	<h2>Les derniers billets publiés ...</h2>
 	</br>
-		<ul>
-			{% for billet in billets %}
-			<p>
-				<a href="{{ path('rwblog_view', {'id': billet.id}) }}">{{ billet.title }}</a>
-				par {{ billet.author }},
-				le {{ billet.date|date('d/m/Y') }}
-			</p>
-			{% if billet.comments | length > 1 %}
-				<p>{{ billet.comments | length }} commentaires</p>
-			{% else %}
-				<p>{{ billet.comments | length }} commentaire</p>
-			{% endif %}
-			<div class="well">
-				<p>{{ billet.content }}</p>
-			</div>
-			<br />
-			{% else %}
-			<li>Pas (encore !) de billets</li>
-			{% endfor %}		
+	<ul>
+	{% for billet in billets %}
+		<p>
+			<a href="{{ path('rwblog_view', {'id': billet.id}) }}">{{ billet.title }}</a>
+			par {{ billet.author }},
+			le {{ billet.date|date('d/m/Y') }}
+		</p>
+		{% if billet.comments | length > 1 %}
+			<p>{{ billet.comments | length }} commentaires</p>
+		{% else %}
+			<p>{{ billet.comments | length }} commentaire</p>
+		{% endif %}
+		<div class="well">
+			<p>{{ billet.content }}</p>
+		</div>
+		<br />
+		{% else %}
+		<li>Pas (encore !) de billets</li>
+	{% endfor %}		
+	</ul>
+		
+	<div class="text-center">
+		<ul class="pagination pagination-centered pagination-sm ">
+		{# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+		{% for p in range(1, nombrePage) %}
+			<li{% if p == page %} class="active"{% endif %}>
+				<a href="{{ path('rwblog_home', {'page': p}) }}">{{ p }}</a>
+			</li>
+		{% endfor %}
 		</ul>
+	</div>
 {% endblock %}

@@ -18,28 +18,27 @@ class BlogController extends Controller
 {
 	public function indexAction($page)
 	{
-		if ($page < 1) {
-			// On déclenche une exception NotFoundHttpException, cela va afficher
-			// une page d'erreur 404 (qu'on pourra personnaliser plus tard d'ailleurs)
-			throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
-		}
 		$repository = $this->getDoctrine()
-						->getManager()
-						->getRepository('RwBlogBundle:Billet');	
-		$billets = $repository->myFindAll();
+						   ->getManager()
+						   ->getRepository('RwBlogBundle:Billet');	
+		$billets = $repository->getBillets(3, $page);
 		return $this->render('RwBlogBundle:Blog:index.html.twig', array(
-		'billets' => $billets
+			'billets'   => $billets,
+			'page'       => $page,
+			'nombrePage' => ceil(count($billets)/3)
 		));
 	}
 	
-	public function listAction()
+	public function listAction($page)
 	{
 		$repository = $this->getDoctrine()
 						->getManager()
 						->getRepository('RwBlogBundle:Billet');
-		$billets = $repository->myFindAll();		
+		$billets = $repository->getBillets(4, $page);		
 		return $this->render('RwBlogBundle:Blog:list.html.twig', array(
-		'billets' => $billets
+		'billets' => $billets,
+		'page'       => $page,
+		'nombrePage' => ceil(count($billets)/4)
 		));
 	}
 	
@@ -85,7 +84,6 @@ class BlogController extends Controller
 			// À partir de maintenant, la variable $billet contient les valeurs entrées dans le formulaire par le visiteur
 			$form->bind($request);
 			// On vérifie que les valeurs entrées sont correctes
-			// (Nous verrons la validation des objets en détail dans le prochain chapitre)
 			if ($form->isValid()) {
 				// On l'enregistre notre objet $billet dans la base de données
 				$em = $this->getDoctrine()->getManager();
@@ -217,12 +215,11 @@ class BlogController extends Controller
 		// On vérifie qu'elle est de type POST
 		if ($request->getMethod() == 'POST') {
 			// On fait le lien Requête <-> Formulaire
-			// À partir de maintenant, la variable $billet contient les valeurs entrées dans le formulaire par le visiteur
+			// À partir de maintenant, la variable $comment contient les valeurs entrées dans le formulaire par le visiteur
 			$form->bind($request);
 			// On vérifie que les valeurs entrées sont correctes
-			// (Nous verrons la validation des objets en détail dans le prochain chapitre)
 			if ($form->isValid()) {
-				// On l'enregistre notre objet $billet dans la base de données
+				// On l'enregistre notre objet $comment dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($comment);
 				$em->flush();
@@ -262,7 +259,6 @@ class BlogController extends Controller
 			// À partir de maintenant, la variable $billet contient les valeurs entrées dans le formulaire par le visiteur
 			$form->bind($request);
 			// On vérifie que les valeurs entrées sont correctes
-			// (Nous verrons la validation des objets en détail dans le prochain chapitre)
 			if ($form->isValid()) {
 				// On l'enregistre notre objet $billet dans la base de données
 				$em = $this->getDoctrine()->getManager();

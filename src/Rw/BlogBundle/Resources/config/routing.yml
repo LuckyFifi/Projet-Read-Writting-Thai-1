@@ -6,8 +6,10 @@ rwblog_home:
         page:  \d*		
 
 rwblog_list:
-    path:      /list
-    defaults:  { _controller: RwBlogBundle:Blog:list}
+    path:      /list/{page}
+    defaults:  { _controller: RwBlogBundle:Blog:list, page: 1 }
+    requirements:
+        page:  \d*	
 
 rwblog_view:
     path:      /billet/{id}
