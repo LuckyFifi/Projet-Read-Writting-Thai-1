@@ -34,11 +34,11 @@ class BlogController extends Controller
 		$repository = $this->getDoctrine()
 						->getManager()
 						->getRepository('RwBlogBundle:Billet');
-		$billets = $repository->getBillets(4, $page);		
+		$billets = $repository->getBillets(5, $page);		
 		return $this->render('RwBlogBundle:Blog:list.html.twig', array(
 		'billets' => $billets,
 		'page'       => $page,
-		'nombrePage' => ceil(count($billets)/4)
+		'nombrePage' => ceil(count($billets)/5)
 		));
 	}
 	
