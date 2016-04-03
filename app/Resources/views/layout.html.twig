@@ -21,6 +21,7 @@
 					 <p class="pconnect pull-right">Bonjour {{ app.user.username }} !</p>
 					{% else %}
 					<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_login') }}">Connection</a>
+					 <p class="pconnect pull-right">Bonjour Anonyme !</p>
 					{% endif %}	
 					<a href="{{ path('rwblog_home') }}">WWW.LIRELETHAILANDAIS.COM</a>
 				</h1> 

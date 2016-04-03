@@ -54,13 +54,11 @@ class BlogController extends Controller
 		));
 	}
 	
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+     */ 
 	public function addAction()
 	{
-	// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
-    if (!$this->get('security.context')->isGranted('ROLE_USER')) {
-		// Sinon on déclenche une exception « Accès interdit »
-		throw new AccessDeniedException('Accès limité aux personnes connectées.');
-    }
 		// On crée un objet Billet
 		$billet = new Billet();
 		// champs préremplis
@@ -94,13 +92,11 @@ class BlogController extends Controller
 		));
 	}
 	
+	/**
+	 * @Security("has_role('ROLE_USER')")
+     */ 
 	public function addCommentAction(Billet $billet)
 	{
-		// On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
-		if (!$this->get('security.context')->isGranted('ROLE_USER')) {
-			// Sinon on déclenche une exception « Accès interdit »
-			throw new AccessDeniedException('Accès limité aux personnes connectées.');
-		}
 		$user = $this->getUser();
 		$comment = new Comment();
 		if (null === $user) {
@@ -227,6 +223,10 @@ class BlogController extends Controller
 		'form' => $form->createView(),
 		));
 	}
+	
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+     */
 	public function editAction($id)
 	{
 		// On récupère le repository
