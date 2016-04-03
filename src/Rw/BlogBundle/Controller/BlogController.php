@@ -42,20 +42,11 @@ class BlogController extends Controller
 		));
 	}
 	
-	public function viewAction($id)
+	public function viewAction(Billet $billet)
 	{
-		// On récupère le repository
 		$repository = $this->getDoctrine()
 						   ->getManager()
 					       ->getRepository('RwBlogBundle:Billet');
-		// On récupère l'entité correspondant à l'id $id
-		$billet = $repository->find($id);
-		// $billet est une instance de Rw\BlogBundle\Entity\Billet
-		// Ou null si aucun billet n'a été trouvé avec l'id $id
-		if($billet === null)
-		{
-			throw $this->createNotFoundException('Billet[id='.$id.'] inexistant.');
-		}
 		$list_comments = $billet->getComments();
 		return $this->render('RwBlogBundle:Blog:view.html.twig', array(
 			'billet' => $billet,
