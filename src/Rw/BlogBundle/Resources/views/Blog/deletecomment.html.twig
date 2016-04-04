@@ -1,0 +1,41 @@
+{# src/Rw/BlogBundle/Resources/views/Blog/deletecomment.html.twig #}
+
+{% extends "RwBlogBundle::layout.html.twig" %}
+
+{% block title %}
+	Confirmez la suppression du commentaire - {{ parent() }}
+{% endblock %}
+
+{% block rwmenublog %}	
+	<h3>Le menu du blog</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
+	</ul>
+{% endblock %}
+
+{% block rwblog_body %}
+	<h3>Confirmez la suppression du commentaire : </h3>
+	<br />
+	<div class="well">
+		<p>{{ comment.content }}</p>
+		</br>
+		<i>Par {{ comment.author }}, le {{ comment.date|date('d/m/Y') }}</i>
+	</div>	
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+		
+		{# Génération du label + error + widget pour un champ #}
+		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+		{# form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) #}
+		<input type="submit" class="btn btn-danger" value="Supprimez le commentaire">
+		
+		{# Génération automatique des champs pas encore écrits.
+		Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+		et tous les champs cachés (type « hidden »). #}
+		{{ form_rest(form) }}
+
+	{# Fermeture de la balise <form> du formulaire HTML #}
+	{{ form_end(form) }}
+	
+{% endblock %}

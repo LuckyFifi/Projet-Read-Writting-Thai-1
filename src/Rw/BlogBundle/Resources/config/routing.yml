@@ -14,6 +14,8 @@ rwblog_list:
 rwblog_view:
     path:      /billet/{id}
     defaults:  { _controller: RwBlogBundle:Blog:view }
+    requirements:
+        id:  \d+
     
 rwblog_add:
     path:      /add
@@ -38,5 +40,10 @@ rwblog_add_comment:
 rwblog_edit_comment:
     path:  /comment/edit/{id}
     defaults: { _controller: RwBlogBundle:Blog:editComment }
+    requirements:
+        id:      \d+
+rwblog_delete_comment:
+    path:  /comment/delete/{id}
+    defaults: { _controller: RwBlogBundle:Blog:deleteComment }
     requirements:
         id:      \d+
