@@ -3,7 +3,7 @@
 {% extends "RwBlogBundle::layout.html.twig" %}
 
 {% block title %}
-	Accueil - {{ parent() }}
+	Accueil du blog du site lire et écrire le thaï
 {% endblock %}
 
 {% block rwmenublog %}
@@ -36,7 +36,7 @@
 		<li>Pas (encore !) de billets</li>
 	{% endfor %}		
 	</ul>
-		
+{% if nombrePage > 1 %}		
 	<div class="text-center">
 		<ul class="pagination pagination-centered pagination-sm ">
 		<li><a href="{{ path('rwblog_home', {'page': 1}) }}">&laquo;</a></li>
@@ -49,4 +49,5 @@
 		<li><a href="{{ path('rwblog_home', {'page': nombrePage }) }}">&raquo;</a></li>
 		</ul>
 	</div>
+{% endif %}
 {% endblock %}
