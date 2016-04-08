@@ -1,0 +1,18 @@
+{# src/Rw/BlogBundle/Resources/views/Core/index.html.twig #}
+{% extends "RwCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil du site lire et écrire le thaï
+{% endblock %}
+
+{% block rwmenublog %}
+	<h3>Le menu du site</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
+	</ul>
+{% endblock %}
+
+{% block rwblog_body %}		
+	<h2>Bienvenue sur le site : lire et écrire le thaï</h2>
+	</br>
+{% endblock %}

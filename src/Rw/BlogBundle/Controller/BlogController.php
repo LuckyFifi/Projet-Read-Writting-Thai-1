@@ -1,5 +1,4 @@
 <?php
-
 // src/Rw/BlogBundle/Controller/BlogController.php
 
 namespace Rw\BlogBundle\Controller;

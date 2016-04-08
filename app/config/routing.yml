@@ -1,3 +1,7 @@
+rw_core:
+    resource: "@RwCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
 rw_blog:
     resource: "@RwBlogBundle/Resources/config/routing.yml"
     prefix:   /blog

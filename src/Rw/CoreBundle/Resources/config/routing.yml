@@ -1,0 +1,3 @@
+rw_core_homepage:
+    path:     /home
+    defaults: { _controller: RwCoreBundle:Core:index }
