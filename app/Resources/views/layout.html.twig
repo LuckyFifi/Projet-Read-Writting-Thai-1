@@ -18,7 +18,7 @@
 				<h1 class="titre_site">
 					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_logout') }}">Deconnexion</a>
-					 <p class="pconnect pull-right">Bonjour {{ app.user.username }} !</p>
+					 <a class="pconnect pull-right" href="{{ path('fos_user_profile_show') }}">Bonjour {{ app.user.username }} !</a>
 					{% else %}
 					<a type="button" class="btn btn-danger btn-xs pull-left"  href="{{ path('fos_user_security_login') }}">Connection</a>
 					 <p class="pconnect pull-right">Bonjour Anonyme !</p>
