@@ -94,19 +94,11 @@ class BlogController extends Controller
 	/**
 	 * @Security("has_role('ROLE_ADMIN')")
      */
-	public function editAction($id)
+	public function editAction(Billet $billet)
 	{
 		// On récupère le repository
 		$em = $this->getDoctrine()->getManager();
 		$repository = $em->getRepository('RwBlogBundle:Billet');
-		// On récupère l'entité correspondant à l'id $id
-		$billet = $repository->find($id);
-		// $billet est une instance de Rw\BlogBundle\Entity\Billet
-		// Ou null si aucun billet n'a été trouvé avec l'id $id
-		if($billet === null)
-		{
-			throw $this->createNotFoundException('Billet[id='.$id.'] inexistant.');
-		}
 		// On crée le formulaire
 		$form = $this->createForm(new BilletType, $billet);	
 		// On récupère la requête
@@ -128,7 +120,6 @@ class BlogController extends Controller
 				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
 			}
 		}
-		// À ce stade :
 		// - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
 		// - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
 		return $this->render('RwBlogBundle:Blog:edit.html.twig', array(
@@ -139,19 +130,11 @@ class BlogController extends Controller
 	/**
 	 * @Security("has_role('ROLE_ADMIN')")
      */ 
-	public function deleteAction($id)
+	public function deleteAction(Billet $billet)
 	{
 		// On récupère le repository
 		$em = $this->getDoctrine()->getManager();
 		$repository = $em->getRepository('RwBlogBundle:Billet');
-		// On récupère l'entité correspondant à l'id $id
-		$billet = $repository->find($id);
-		// $billet est une instance de Rw\BlogBundle\Entity\Billet
-		// Ou null si aucun billet n'a été trouvé avec l'id $id
-		if($billet === null)
-		{
-			throw $this->createNotFoundException('Billet[id='.$id.'] inexistant.');
-		}
 		// On crée un formulaire vide, qui ne contiendra que le champ CSRF
 		// Cela permet de protéger la suppression d'article contre cette faille
 		$form = $this->createFormBuilder()->getForm();
@@ -260,7 +243,6 @@ class BlogController extends Controller
 				return $this->redirect($this->generateUrl('rwblog_view', array('id' => $billet->getId())));
 			}
 		}
-		// À ce stade :
 		// - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
 		// - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
 		return $this->render('RwBlogBundle:Blog:editComment.html.twig', array(
