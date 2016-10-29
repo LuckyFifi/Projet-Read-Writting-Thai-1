@@ -1,0 +1,20 @@
+{# src/Rw/CoreBundle/Resources/views/Core/listLesson.html.twig #}
+
+{% extends "RwCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Les leçons - {{ parent() }}
+{% endblock %}
+
+{% block rwmenucore %}	
+	<h3>Le menu leçon</h3>
+	<ul class="nav nav-pills nav-stacked">
+	<p>Coucou c'est le futur menu des leçons !</p>
+	<p>listLesson</p>
+	{% include "RwCoreBundle:Core:lessonMenu.html.twig" %}
+	</ul>
+{% endblock %}
+
+{% block rwcore_body %}
+	{% include "RwCoreBundle:Core:lessons.html.twig" %}
+{% endblock %}

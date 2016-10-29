@@ -1,23 +1,22 @@
-{# src/Rw/CoreBundle/Resources/views/layout.html.twig #}
+{# src/Rw/CoreBundle/Resources/views/Core/layout.html.twig #}
 
 {% extends "::layout.html.twig" %}
 
 {% block title %}
-	Accueil du site lire et écrire le thaï.
+	Lesson - {{ parent() }}
 {% endblock %}
 
 {% block title_bundle %}
-	Accueil du site lire et écrire le thaï.
+	Les leçons : pour apprendre à lire et écrire le thaï
 {% endblock %}
 
 {% block menu %}
-	{% block rwmenucore %}
-	Menu Rw Core 
+	{% block rwmenublog %}
 	{% endblock %}
 {% endblock %}
 
 {% block body %}
-		{% block rwcore_body %}
+		{% block rwblog_body %}
 		{% endblock %}
 {% endblock %}
 	

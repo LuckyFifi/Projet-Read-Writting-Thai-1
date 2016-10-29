@@ -1,0 +1,42 @@
+{# src/Rw/CoreBundle/Resources/views/Core/deleteLesson.html.twig #}
+
+{% extends "RwCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Confirmez le suppression de la leçon - {{ parent() }}
+{% endblock %}
+
+{% block rwmenucore %}	
+	<h3>Le menu des leçons</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwCoreBundle:Core:coremenu.html.twig" %}
+	</ul>
+{% endblock %}
+
+{% block rwcore_body %}
+	<h2>Confirmez la suppression de la leçon : </h2>
+	<h2>{{ lesson.title }}</h2>
+
+	<div class="well">
+		{{ lesson.title1 }}
+		{{ lesson.article1 }}
+	</div>
+		
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+		
+		{# Génération du label + error + widget pour un champ #}
+		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+		{# form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) #}
+		<input type="submit" class="btn btn-danger" value="Supprimez la leçon">
+		
+		{# Génération automatique des champs pas encore écrits.
+		Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+		et tous les champs cachés (type « hidden »). #}
+		{{ form_rest(form) }}
+
+	{# Fermeture de la balise <form> du formulaire HTML #}
+	{{ form_end(form) }}
+	
+{% endblock %}

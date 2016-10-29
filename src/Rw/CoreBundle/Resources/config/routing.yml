@@ -1,3 +1,29 @@
 rw_core_homepage:
     path:     /
     defaults: { _controller: RwCoreBundle:Core:index }
+
+rw_core_list:
+    path:      /list
+    defaults:  { _controller: RwCoreBundle:Core:listLesson}
+
+rw_core_viewlesson:
+    path:      /lesson/{id}
+    defaults:  { _controller: RwCoreBundle:Core:viewLesson }
+    requirements:
+        id:  \d+
+
+rw_core_add:
+    path:      /addLesson
+    defaults:  { _controller: RwCoreBundle:Core:addLesson }
+
+rw_core_edit:
+    path:      /editLesson/{id}
+    defaults:  { _controller: RwCoreBundle:Core:editLesson }
+    requirements:
+        id:  \d+
+
+rw_core_delLesson:
+    path:      /delLesson/{id}
+    defaults:  { _controller: RwCoreBundle:Core:delLesson }
+    requirements:
+        id:  \d+

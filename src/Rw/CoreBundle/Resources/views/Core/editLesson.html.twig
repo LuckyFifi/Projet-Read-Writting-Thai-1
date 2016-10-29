@@ -1,0 +1,20 @@
+{# src/Rw/CoreBundle/Resources/views/Core/editLesson.html.twig #}
+
+{% extends "RwCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une leçon - {{ parent() }}
+{% endblock %}
+
+{% block rwmenucore %}	
+	<h3>Le menu des leçons</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwCoreBundle:Core:coremenu.html.twig" %}
+	</ul>
+{% endblock %}
+
+{% block rwcore_body %}
+	<h2>Modifier une leçon</h2>
+	</br>
+	{% include "RwCoreBundle:Core:formulaire.html.twig" %}
+{% endblock %}
