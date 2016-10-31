@@ -1,3 +1,3 @@
-rw_forum_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: RwForumBundle:Default:index }
+rw_forum_home:
+    path:     /
+    defaults: { _controller: RwForumBundle:Forum:index }

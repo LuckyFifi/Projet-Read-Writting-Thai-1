@@ -1,6 +1,6 @@
 rw_forum:
     resource: "@RwForumBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /forum
 
 rw_core:
     resource: "@RwCoreBundle/Resources/config/routing.yml"
