@@ -22,7 +22,7 @@ rw_core_edit:
     requirements:
         id:  \d+
 
-rw_core_delLesson:
+rw_core_del:
     path:      /delLesson/{id}
     defaults:  { _controller: RwCoreBundle:Core:delLesson }
     requirements:

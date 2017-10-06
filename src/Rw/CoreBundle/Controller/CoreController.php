@@ -15,21 +15,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class CoreController extends Controller
 {
     public function indexAction()
+	// Accueil du site
     {
 		return $this->render('RwCoreBundle:Core:index.html.twig');
     }
 	
 	public function listLessonAction()
+	// Accueil des lessons - Affichage de la liste des leçons
 	{
 		$repository = $this->getDoctrine()
 						   ->getManager()
 					       ->getRepository('RwCoreBundle:Lesson');
 		$lessons = $repository->findAll();
-		return $this->render('RwCoreBundle:Core:listLesson.html.twig', array(
+		return $this->render('RwCoreBundle:Core:indexLesson.html.twig', array(
 			'lessons' => $lessons
 		));
 	}
 	public function viewLessonAction(Lesson $lesson)
+	// Affichage de chaque leçons
 	{
 		$repository = $this->getDoctrine()
 						   ->getManager()

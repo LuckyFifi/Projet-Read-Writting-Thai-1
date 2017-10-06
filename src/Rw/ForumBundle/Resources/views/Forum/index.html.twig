@@ -1,17 +1,19 @@
 {# src/Rw/ForumBundle/Resources/views/Forum/index.html.twig #}
+{# page forum niveau 3 #}
 
 {% extends "RwForumBundle::layout.html.twig" %}
 
 {% block title %}
-	Accueil du Forum du site lire et écrire le thaï (niveau 3)
+	Accueil - {{ parent() }}
 {% endblock %}
 
 {% block menu %}
-	<p>futur menu du forum </p>
-	<p>futur menu du forum </p>
-	<p>futur menu du forum </p>
 {% endblock %}
 
-{% block body %}		
-	<h2>Coucou vous êtes sur la page d'accueil du forum ...</h2>
+{% block title_bundle %}
+	Le Forum : parlez (niveau 2)
+{% endblock %}
+
+{% block body %}	
+		<h2>Coucou vous êtes sur la page d'accueil du forum ...</h2>			
 {% endblock %}

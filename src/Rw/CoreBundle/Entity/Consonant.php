@@ -20,6 +20,11 @@ class Consonant
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+	
+	/**
+     * @ORM\OneToOne(targetEntity="Rw\CoreBundle\Entity\Draw", cascade={"persist"})
+     */
+    private $draw;
 
     /**
      * @var string
@@ -150,5 +155,28 @@ class Consonant
     public function getFinal()
     {
         return $this->final;
+    }
+
+    /**
+     * Set draw
+     *
+     * @param \Rw\CoreBundle\Entity\Draw $draw
+     * @return Consonant
+     */
+    public function setDraw(\Rw\CoreBundle\Entity\Draw $draw = null)
+    {
+        $this->draw = $draw;
+
+        return $this;
+    }
+
+    /**
+     * Get draw
+     *
+     * @return \Rw\CoreBundle\Entity\Draw 
+     */
+    public function getDraw()
+    {
+        return $this->draw;
     }
 }

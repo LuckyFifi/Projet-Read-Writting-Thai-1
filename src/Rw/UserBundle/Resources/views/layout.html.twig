@@ -1,4 +1,5 @@
 {# src/Rw/UserBundle/Resources/views/layout.html.twig #}
+{# layout niveau 2 du UserBundle #}
 
 {% extends "::layout.html.twig" %}
 
@@ -11,15 +12,16 @@
 {% endblock %}
 
 {% block menu %}
-	{% block rwmenublog %}
+<div id="menu" class="col-sm-3 col-xs-12" >
 	<h3>Menu utilisateur</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwUserBundle:Security:usermenu.html.twig" %}
 	</ul>
-	{% endblock %}
+</div>
 {% endblock %}
-{% block body %}
 
+{% block body %}
+<div id="content" class="col-sm-9 col-xs-12" >
 	{# On affiche les messages flash que définissent les contrôleurs du bundle #}
 	{% for key, messages in app.session.flashbag.all() %}
 	<div class="well">
@@ -34,5 +36,5 @@
 	{# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
 	{% block fos_user_content %}
 	{% endblock fos_user_content %}
-
+</div>
 {% endblock %}
