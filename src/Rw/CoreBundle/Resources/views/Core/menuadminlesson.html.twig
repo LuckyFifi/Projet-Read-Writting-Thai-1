@@ -2,6 +2,6 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 	<a type="button" class="btn btn-success"  href="{{ path('rw_core_edit', { 'id': lesson.id }) }}">Modifiez la leçon</a>
-	<a type="button" class="btn btn-danger"  href="{{ path('rw_core_delLesson', { 'id': lesson.id }) }}">Supprimez la leçon</a>
+	<a type="button" class="btn btn-danger"  href="{{ path('rw_core_del', { 'id': lesson.id }) }}">Supprimez la leçon</a>
 {% endif %}
 

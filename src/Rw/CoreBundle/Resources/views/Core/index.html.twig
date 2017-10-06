@@ -1,18 +1,23 @@
-{# src/Rw/BlogBundle/Resources/views/Core/index.html.twig #}
+{# src/Rw/CoreBundle/Resources/views/Core/index.html.twig #}
+{# index du site CoreBundle niveau 3 #}
+
 {% extends "RwCoreBundle::layout.html.twig" %}
 
 {% block title %}
 	Accueil du site lire et écrire le thaï
 {% endblock %}
 
-{% block rwmenucore %}
+{% block menu %}
+<div id="menu" class="col-sm-3 col-xs-12" >
 	<h3>Le menu du site</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwCoreBundle:Core:coremenu.html.twig" %}
 	</ul>
+</div>
 {% endblock %}
 
-{% block rwcore_body %}		
+{% block body %}	
+<div id="content" class="col-sm-9 col-xs-12" >
 	<h2>Bienvenue sur le site : lire et écrire le thaï</h2>
 	</br>
 	<p>Bonjour et bienvenue sur le site lirelethailandais.com. 
@@ -34,4 +39,5 @@
 	possible et finalement c'est même plus facile que ce l'on pourrait croire. Je pense qu'il est même plus facile de 
 	lire le thai écrit que de le parler. 
 	</p>
+</div>
 {% endblock %}
