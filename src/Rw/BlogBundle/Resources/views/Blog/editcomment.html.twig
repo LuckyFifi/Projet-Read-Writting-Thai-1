@@ -1,4 +1,5 @@
 {# src/Rw/BlogBundle/Resources/views/Blog/editcomment.html.twig #}
+{# modifier un commentaire BlogBundle niveau 3 #}
 
 {% extends "RwBlogBundle::layout.html.twig" %}
 
@@ -6,15 +7,23 @@
   Modifier un commentaire - {{ parent() }}
 {% endblock %}
 
-{% block rwmenublog %}	
+{% block title_bundle %}
+	Modifier un commentaire. (blog niveau 3)
+{% endblock %}
+
+{% block menu %}	
+<div id="menu" class="col-sm-3 col-xs-12" >
 	<h3>Le menu du blog</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
 	</ul>
+</div>
 {% endblock %}
 
-{% block rwblog_body %}
+{% block body %}
+<div id="content" class="col-sm-9 col-xs-12" >
 	<h2>Modifier un commentaire</h2>
 	</br>
-	{% include "RwBlogBundle:Blog:formulairecomment.html.twig" %}	
+	{% include "RwBlogBundle:Blog:formulairecomment.html.twig" %}
+</div>	
 {% endblock %}

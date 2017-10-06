@@ -1,19 +1,27 @@
 {# src/Rw/BlogBundle/Resources/views/Blog/index.html.twig #}
+{# index BlogBundle niveau 3 #}
 
 {% extends "RwBlogBundle::layout.html.twig" %}
 
 {% block title %}
-	Accueil du blog du site lire et écrire le thaï
+	Accueil - {{ parent() }}
 {% endblock %}
 
-{% block rwmenublog %}
+{% block title_bundle %}
+	Accueil du blog. (blog niveau 3)
+{% endblock %}
+
+{% block menu %}
+<div id="menu" class="col-sm-3 col-xs-12" >
 	<h3>Le menu du blog</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
 	</ul>
+</div>
 {% endblock %}
 
-{% block rwblog_body %}		
+{% block body %}	
+<div id="content" class="col-sm-9 col-xs-12" >
 	<h2>Les derniers billets publiés ...</h2>
 	</br>
 	<ul>
@@ -36,7 +44,7 @@
 		<li>Pas (encore !) de billets</li>
 	{% endfor %}		
 	</ul>
-{% if nombrePage > 1 %}		
+	{% if nombrePage > 1 %}		
 	<div class="text-center">
 		<ul class="pagination pagination-centered pagination-sm ">
 		<li><a href="{{ path('rwblog_home', {'page': 1}) }}">&laquo;</a></li>
@@ -49,5 +57,6 @@
 		<li><a href="{{ path('rwblog_home', {'page': nombrePage }) }}">&raquo;</a></li>
 		</ul>
 	</div>
-{% endif %}
+	{% endif %}
+</div>
 {% endblock %}

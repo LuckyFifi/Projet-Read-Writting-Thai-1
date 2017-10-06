@@ -1,19 +1,27 @@
 {# src/Rw/BlogBundle/Resources/views/Blog/deletecomment.html.twig #}
+{# supprimer un commentaire BlogBundle niveau 3 #}
 
 {% extends "RwBlogBundle::layout.html.twig" %}
 
 {% block title %}
-	Confirmez la suppression du commentaire - {{ parent() }}
+	Suppression d'un commentaire - {{ parent() }}
 {% endblock %}
 
-{% block rwmenublog %}	
+{% block title_bundle %}
+	Supprimer un commentaire. (blog niveau 3)
+{% endblock %}
+
+{% block menu %}	
+<div id="menu" class="col-sm-3 col-xs-12" >
 	<h3>Le menu du blog</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
 	</ul>
+</div>
 {% endblock %}
 
-{% block rwblog_body %}
+{% block body %}
+<div id="content" class="col-sm-9 col-xs-12" >
 	<h3>Confirmez la suppression du commentaire : </h3>
 	<br />
 	<div class="well">
@@ -37,5 +45,5 @@
 
 	{# Fermeture de la balise <form> du formulaire HTML #}
 	{{ form_end(form) }}
-	
+</div>	
 {% endblock %}

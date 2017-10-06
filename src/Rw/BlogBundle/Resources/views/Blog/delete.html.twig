@@ -1,19 +1,27 @@
 {# src/Rw/BlogBundle/Resources/views/Blog/delete.html.twig #}
+{# supprimer un billets BlogBundle niveau 3 #}
 
 {% extends "RwBlogBundle::layout.html.twig" %}
 
 {% block title %}
-	Confirmez le suppression du billet - {{ parent() }}
+	Suppression d'un billet - {{ parent() }}
 {% endblock %}
 
-{% block rwmenublog %}	
+{% block title_bundle %}
+	Supprimer un billet. (blog niveau 3)
+{% endblock %}
+
+{% block menu %}
+<div id="menu" class="col-sm-3 col-xs-12" >	
 	<h3>Le menu du blog</h3>
 	<ul class="nav nav-pills nav-stacked">
 		{% include "RwBlogBundle:Blog:blogmenu.html.twig" %}
 	</ul>
+</div>
 {% endblock %}
 
-{% block rwblog_body %}
+{% block body %}
+<div id="content" class="col-sm-9 col-xs-12" >
 	<h2>Confirmez la suppression du billet : </h2>
 	<h2>{{ billet.title }}</h2>
 	</br>
@@ -39,5 +47,5 @@
 
 	{# Fermeture de la balise <form> du formulaire HTML #}
 	{{ form_end(form) }}
-	
+</div>
 {% endblock %}
