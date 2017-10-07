@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Rw\CoreBundle\Entity\Lesson")
+     * @ORM\ManyToOne(targetEntity="Rw\CoreBundle\Entity\Lesson", inversedBy="articles")
      */
     private $lesson;
 	

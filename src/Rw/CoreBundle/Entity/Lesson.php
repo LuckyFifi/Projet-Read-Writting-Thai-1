@@ -14,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Lesson
 {
     /**
+     * @ORM\OneToMany(targetEntity="Rw\CoreBundle\Entity\Article", mappedBy="lesson")
+    */
+	private $articles; // Notez le « s », une lesson est liée à plusieurs articles
+
+
+	
+	/**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -508,5 +515,47 @@ class Lesson
     public function getTitle6()
     {
         return $this->title6;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \Rw\CoreBundle\Entity\Article $article
+     * @return Lesson
+     */
+    public function addArticle(Article $article)
+    {
+        $this->articles[] = $article;
+		
+		$article->setLesson($this);
+		
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \Rw\CoreBundle\Entity\Article $article
+     */
+    public function removeArticle(Article $article)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }
