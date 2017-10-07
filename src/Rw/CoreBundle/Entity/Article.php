@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
+     * @ORM\ManyToOne(targetEntity="Rw\CoreBundle\Entity\Lesson")
+     */
+    private $lesson;
+	
+	/**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -90,5 +95,28 @@ class Article
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set advert
+     *
+     * @param \Rw\CoreBundle\Entity\Lesson $advert
+     * @return Article
+     */
+    public function setLesson(\Rw\CoreBundle\Entity\Lesson $lesson = null)
+    {
+        $this->lesson = $lesson;
+
+        return $this;
+    }
+
+    /**
+     * Get advert
+     *
+     * @return \Rw\CoreBundle\Entity\Lesson 
+     */
+    public function getLesson()
+    {
+        return $this->lesson;
     }
 }
