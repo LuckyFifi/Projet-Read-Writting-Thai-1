@@ -19,18 +19,11 @@ class LessonType extends AbstractType
             ->add('summary',   'textarea')
             ->add('content',   'text', array('required' => false))
 			->add('title1',    'text', array('required' => false))
-            ->add('article1',  'textarea', array('required' => false))
 			->add('title2',    'text', array('required' => false))
-            ->add('article2',  'textarea', array('required' => false))
 			->add('title3',    'text', array('required' => false))
-            ->add('article3',  'textarea', array('required' => false) )
 			->add('title4',    'text', array('required' => false))
-            ->add('article4',  'textarea', array('required' => false))
 			->add('title5',    'text', array('required' => false))
-            ->add('article5',  'textarea', array('required' => false))
 			->add('title6',    'text', array('required' => false))
-            ->add('article6',  'textarea', array('required' => false))
-            ->add('published', 'checkbox', array('required' => false))
 			->add('save',      'submit')
         ;
     }
