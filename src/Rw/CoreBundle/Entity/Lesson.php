@@ -56,13 +56,6 @@ class Lesson
      * @ORM\Column(name="title1", type="string", length=255, nullable=true)
      */
     private $title1;
-
-	/**
-     * @var string
-     *
-     * @ORM\Column(name="article1", type="text", nullable=true)
-     */
-    private $article1;
 	
 	/**
      * @var string
@@ -74,23 +67,9 @@ class Lesson
 	/**
      * @var string
      *
-     * @ORM\Column(name="article2", type="text", nullable=true)
-     */
-    private $article2;
-	
-	/**
-     * @var string
-     *
      * @ORM\Column(name="title3", type="string", length=255, nullable=true)
      */
     private $title3;
-	
-	/**
-     * @var string
-     *
-     * @ORM\Column(name="article3", type="text", nullable=true)
-     */
-    private $article3;
 	
 	/**
      * @var string
@@ -102,13 +81,6 @@ class Lesson
 	/**
      * @var string
      *
-     * @ORM\Column(name="article4", type="text", nullable=true)
-     */
-    private $article4;
-	
-	/**
-     * @var string
-     *
      * @ORM\Column(name="title5", type="string", length=255, nullable=true)
      */
     private $title5;
@@ -116,28 +88,9 @@ class Lesson
 	/**
      * @var string
      *
-     * @ORM\Column(name="article5", type="text", nullable=true)
-     */
-    private $article5;
-	
-	/**
-     * @var string
-     *
      * @ORM\Column(name="title6", type="string", length=255, nullable=true)
      */
     private $title6;
-	
-	/**
-     * @var string
-     *
-     * @ORM\Column(name="article6", type="text", nullable=true)
-     */
-    private $article6;
-	
-	/**
-	 * @ORM\Column(name="published", type="boolean")
-	 */
-	private $published = false;
 	
     /**
      * Get id
@@ -216,167 +169,6 @@ class Lesson
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set article1
-     *
-     * @param string $article1
-     * @return Lesson
-     */
-    public function setArticle1($article1)
-    {
-        $this->article1 = $article1;
-
-        return $this;
-    }
-
-    /**
-     * Get article1
-     *
-     * @return string 
-     */
-    public function getArticle1()
-    {
-        return $this->article1;
-    }
-
-    /**
-     * Set article2
-     *
-     * @param string $article2
-     * @return Lesson
-     */
-    public function setArticle2($article2)
-    {
-        $this->article2 = $article2;
-
-        return $this;
-    }
-
-    /**
-     * Get article2
-     *
-     * @return string 
-     */
-    public function getArticle2()
-    {
-        return $this->article2;
-    }
-
-    /**
-     * Set article3
-     *
-     * @param string $article3
-     * @return Lesson
-     */
-    public function setArticle3($article3)
-    {
-        $this->article3 = $article3;
-
-        return $this;
-    }
-
-    /**
-     * Get article3
-     *
-     * @return string 
-     */
-    public function getArticle3()
-    {
-        return $this->article3;
-    }
-
-    /**
-     * Set article4
-     *
-     * @param string $article4
-     * @return Lesson
-     */
-    public function setArticle4($article4)
-    {
-        $this->article4 = $article4;
-
-        return $this;
-    }
-
-    /**
-     * Get article4
-     *
-     * @return string 
-     */
-    public function getArticle4()
-    {
-        return $this->article4;
-    }
-
-    /**
-     * Set article5
-     *
-     * @param string $article5
-     * @return Lesson
-     */
-    public function setArticle5($article5)
-    {
-        $this->article5 = $article5;
-
-        return $this;
-    }
-
-    /**
-     * Get article5
-     *
-     * @return string 
-     */
-    public function getArticle5()
-    {
-        return $this->article5;
-    }
-
-    /**
-     * Set article6
-     *
-     * @param string $article6
-     * @return Lesson
-     */
-    public function setArticle6($article6)
-    {
-        $this->article6 = $article6;
-
-        return $this;
-    }
-
-    /**
-     * Get article6
-     *
-     * @return string 
-     */
-    public function getArticle6()
-    {
-        return $this->article6;
-    }
-
-    /**
-     * Set published
-     *
-     * @param boolean $published
-     * @return Lesson
-     */
-    public function setPublished($published)
-    {
-        $this->published = $published;
-
-        return $this;
-    }
-
-    /**
-     * Get published
-     *
-     * @return boolean 
-     */
-    public function getPublished()
-    {
-        return $this->published;
     }
 
     /**
@@ -546,7 +338,7 @@ class Lesson
      */
     public function removeArticle(Article $article)
     {
-        $this->articles->removeElement($articles);
+        $this->articles->removeElement($article);
     }
 
     /**
