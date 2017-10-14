@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class LessonRepository extends EntityRepository
 {
+	public function getLessonWithArticles()
+	{
+		$qb = $this->createQueryBuilder('l')
+				   ->leftJoin('l.articles', 'a')
+				   ->addSelect('a');
+
+		return $qb->getQuery()
+                  ->getResult();
+	}
 }

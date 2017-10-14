@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Rw\CoreBundle\Entity\Lesson;
+use Rw\CoreBundle\Entity\Article;
 use Rw\CoreBundle\Form\LessonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -23,21 +24,22 @@ class CoreController extends Controller
 	public function listLessonAction()
 	// Accueil des lessons - Affichage de la liste des leçons
 	{
-		$repository = $this->getDoctrine()
-						   ->getManager()
-					       ->getRepository('RwCoreBundle:Lesson');
-		$lessons = $repository->findAll();
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$listLessons = $em->getRepository('RwCoreBundle:Lesson')
+					      ->getLessonWithArticles();
 		return $this->render('RwCoreBundle:Core:indexLesson.html.twig', array(
-			'lessons' => $lessons
+			'lessons' 	=> $listLessons,
 		));
 	}
+	
 	public function viewLessonAction(Lesson $lesson)
 	// Affichage de chaque leçons
 	{
 		$repository = $this->getDoctrine()
 						   ->getManager()
 					       ->getRepository('RwCoreBundle:Lesson');
-		return $this->render('RwCoreBundle:Core:viewLesson.html.twig', array(
+		return $this->render('RwCoreBundle:Core:viewLesson.html.twig', array(	
 			'lesson' => $lesson
 		));
 	}

@@ -350,4 +350,5 @@ class Lesson
     {
         return $this->articles;
     }
+
 }
