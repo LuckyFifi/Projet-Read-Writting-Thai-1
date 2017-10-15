@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Rw\CoreBundle\Entity\Lesson;
 use Rw\CoreBundle\Entity\Article;
 use Rw\CoreBundle\Form\LessonType;
+use Rw\CoreBundle\Form\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
@@ -147,4 +148,32 @@ class CoreController extends Controller
 		));
 	}
 	
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+     */ 
+	public function addArticleAction(Lesson $lesson)
+	{
+		$article = new Article();		
+		$article->setLesson($lesson);
+		// création de la liste des articles pour la vue twig
+		$list_articles = $lesson->getArticles(); 
+		$form = $this->createForm(new ArticleType, $article);
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			if ($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($article);
+				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', "L'article a bien été enregistré !");
+				return $this->redirect($this->generateUrl('rw_core_viewlesson', array('id' => $lesson->getId())));
+			}
+		}
+		return $this->render('RwCoreBundle:Core:addarticle.html.twig', array(
+		'form' => $form->createView(),
+		'lesson' => $lesson,
+		'articless' => $list_articles 
+		));
+	}
 }

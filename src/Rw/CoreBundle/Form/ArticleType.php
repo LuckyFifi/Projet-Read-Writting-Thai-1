@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class LessonType extends AbstractType
+class ArticleType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,8 @@ class LessonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title',     'text')
-            ->add('summary',   'textarea', array('required' => false))
-            ->add('content',   'text', array('required' => false))
-			->add('title1',    'text', array('required' => false))
-			->add('title2',    'text', array('required' => false))
-			->add('title3',    'text', array('required' => false))
-			->add('title4',    'text', array('required' => false))
-			->add('title5',    'text', array('required' => false))
-			->add('title6',    'text', array('required' => false))
+            ->add('title', 'text')
+            ->add('content', 'textarea', array('required' => false))
 			->add('save',      'submit')
         ;
     }
@@ -34,7 +27,7 @@ class LessonType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rw\CoreBundle\Entity\Lesson'
+            'data_class' => 'Rw\CoreBundle\Entity\Article'
         ));
     }
 
@@ -43,6 +36,6 @@ class LessonType extends AbstractType
      */
     public function getName()
     {
-        return 'rw_corebundle_lesson';
+        return 'rw_corebundle_article';
     }
 }

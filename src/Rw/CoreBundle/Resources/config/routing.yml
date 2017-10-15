@@ -27,3 +27,9 @@ rw_core_del:
     defaults:  { _controller: RwCoreBundle:Core:delLesson }
     requirements:
         id:  \d+
+
+rw_core_addarticle:
+    path:  /article/{id}
+    defaults: { _controller: RwCoreBundle:Core:addArticle }
+    requirements:
+        id:    \d+
