@@ -173,7 +173,7 @@ class CoreController extends Controller
 		return $this->render('RwCoreBundle:Core:addarticle.html.twig', array(
 		'form' => $form->createView(),
 		'lesson' => $lesson,
-		'articless' => $list_articles 
+		'articles' => $list_articles 
 		));
 	}
 }
