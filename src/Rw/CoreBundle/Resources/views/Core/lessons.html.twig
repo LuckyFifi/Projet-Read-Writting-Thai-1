@@ -1,0 +1,14 @@
+{# src/Rw/CoreBundle/Resources/views/Core/lessons.html.twig #}
+
+<ul>
+	{% for lesson in lessons %}
+		<li><h3><a href="{{ path('rw_core_viewlesson', {'id': lesson.id}) }}">{{ lesson.title }}</a></h3>
+		{% set articles = lesson.articles %}
+		{% for article in articles %}
+			<p>{{ article.title|raw }}</p></li>
+		{% endfor %}
+		{% include "RwCoreBundle:Core:menuadminlesson.html.twig" %}
+	{% endfor %}
+</ul>
+
+

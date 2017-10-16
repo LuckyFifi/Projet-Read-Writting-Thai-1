@@ -39,13 +39,6 @@ class Lesson
     /**
      * @var string
      *
-     * @ORM\Column(name="summary", type="text")
-     */
-    private $summary;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="content", type="string", length=255, nullable=true)
      */
     private $content;
@@ -123,29 +116,6 @@ class Lesson
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set summary
-     *
-     * @param string $summary
-     * @return Lesson
-     */
-    public function setSummary($summary)
-    {
-        $this->summary = $summary;
-
-        return $this;
-    }
-
-    /**
-     * Get summary
-     *
-     * @return string 
-     */
-    public function getSummary()
-    {
-        return $this->summary;
     }
 
     /**

@@ -1,0 +1,55 @@
+{# src/Rw/CoreBundle/Resources/views/Core/lesson.html.twig #}
+
+<div>
+	<p><br /></p>
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include "RwCoreBundle:Core:menuadminlesson.html.twig" %}
+		<p></p>
+	{% endif %}
+<div class="well">	
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Sommaire</h3>
+		</div>
+		<div class="panel-body">
+				<p>{{ lesson.title1|raw }}</p>
+				<p>{{ lesson.title2|raw }}</p>
+				<p>{{ lesson.title3|raw }}</p>
+				<p>{{ lesson.title4|raw }}</p>
+				<p>{{ lesson.title5|raw }}</p>
+				<p>{{ lesson.title6|raw }}</p>		
+		</div>
+	</div>
+	
+	{% if lesson.content is empty %}
+		{% if lesson.article1 is empty %}
+		{% else %}
+			<div class="well"><h3>{{ lesson.title1|raw }}</h3><p>{{ lesson.article1|raw }}</p></div>
+		{% endif %}
+		{% if lesson.article2 is empty %}
+		{% else %}
+			<div class="well"><h3>{{ lesson.title2|raw }}</h3><p>{{ lesson.article2|raw }}</p></div>
+		{% endif %}
+		{% if lesson.article3 is empty %}
+		{% else %}
+			<div class="well"><h3>{{ lesson.title3|raw }}</h3><p>{{ lesson.article3|raw }}</p></div>
+		{% endif %}
+		{% if lesson.article4 is empty %}
+		{% else %}
+			<div class="well"><h3>{{ lesson.title4|raw }}</h3><p>{{ lesson.article4|raw }}</p></div>
+		{% endif %}
+		{% if lesson.article5 is empty %}
+		{% else %}
+			<div class="well"><h3>{{ lesson.title5|raw }}</h3><p>{{ lesson.article5|raw }}</p></div>
+		{% endif %}
+		{% if lesson.article6 is empty %}
+		{% else %}
+			<div class="well"><h3>{{ lesson.title6|raw }}</h3><p>{{ lesson.article6|raw }}</p></div>
+		{% endif %}
+	{% else %}
+		{{ include({ 'content' :lesson.content }) }}
+	{% endif %}
+	</div>
+</div>
+
+
