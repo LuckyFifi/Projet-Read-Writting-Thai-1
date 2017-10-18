@@ -189,7 +189,7 @@ class CoreController extends Controller
 		// Ou null si aucune lesson n'a été trouvé avec l'id $id
 		if($article === null)
 		{
-			throw $this->createNotFoundException('Lesson[id='.$id.'] inexistante.');
+			throw $this->createNotFoundException('Article[id='.$id.'] inexistant.');
 		}		
 		// On crée le formulaire
 		$form = $this->createForm(new ArticleType, $article);	

@@ -11,7 +11,8 @@
 						<h3 class="panel-title">{{ article.title|raw }}</h3>
 					</div>
 					<div class="panel-body">
-						{{ article.content|raw }}
+						{{ include({ 'content' :article.content }) }}
+						{# article.content|raw #}
 						{% include "RwCoreBundle:Core:menuadminarticle.html.twig" %}
 					</div>
 				</div>
