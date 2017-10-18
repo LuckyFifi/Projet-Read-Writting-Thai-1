@@ -198,11 +198,11 @@ class CoreController extends Controller
 		// On vérifie qu'elle est de type POST
 		if ($request->getMethod() == 'POST') {
 			// On fait le lien Requête <-> Formulaire
-			// À partir de maintenant, la variable $lesson contient les valeurs entrées dans le formulaire
+			// À partir de maintenant, la variable $article contient les valeurs entrées dans le formulaire
 			$form->bind($request);
 			// On vérifie que les valeurs entrées sont correctes
 			if ($form->isValid()) {
-				// On l'enregistre notre objet $lesson dans la base de données
+				// On l'enregistre notre objet $article dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($article);
 				$em->flush();

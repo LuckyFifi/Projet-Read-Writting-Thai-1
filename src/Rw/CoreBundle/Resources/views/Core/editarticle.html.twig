@@ -1,14 +1,14 @@
 {# src/Rw/CoreBundle/Resources/views/Core/editarticle.html.twig #}
-{# modifier un article CoreBundle niveau 3 #}
+{# modifier un article #}
 
 {% extends "RwCoreBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier un article - {{ parent() }}
+  Modifier un article du site {{ parent() }}
 {% endblock %}
 
 {% block title_bundle %}
-	Modifier un article. (blog niveau 3)
+	Modifier un article.
 {% endblock %}
 
 {% block menu %}	
@@ -22,7 +22,7 @@
 
 {% block body %}
 <div id="content" class="col-sm-9 col-xs-12" >
-	<h2>Modifier un article</h2>
+	<h2>Modifiez l'article ...</h2>
 	</br>
 	{% include "RwCoreBundle:Core:formulairearticle.html.twig" %}
 </div>
