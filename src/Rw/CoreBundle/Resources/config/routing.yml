@@ -32,4 +32,9 @@ rw_core_addarticle:
     path:  /article/{id}
     defaults: { _controller: RwCoreBundle:Core:addArticle }
     requirements:
+        id:    \d+		
+rw_core_editarticle:
+    path:  /editArticle/{id}
+    defaults: { _controller: RwCoreBundle:Core:editArticle }
+    requirements:
         id:    \d+

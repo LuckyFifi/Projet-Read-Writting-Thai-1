@@ -29,7 +29,7 @@ class CoreController extends Controller
 				   ->getManager();
 		$listLessons = $em->getRepository('RwCoreBundle:Lesson')
 					      ->getLessonWithArticles();
-		return $this->render('RwCoreBundle:Core:indexLesson.html.twig', array(
+		return $this->render('RwCoreBundle:Core:listLesson.html.twig', array(
 			'lessons' 	=> $listLessons,
 		));
 	}
@@ -174,6 +174,48 @@ class CoreController extends Controller
 		'form' => $form->createView(),
 		'lesson' => $lesson,
 		'articles' => $list_articles 
+		));
+	}
+	
+	public function editArticleAction($id)
+	{
+		// On récupère le repository
+		$em = $this->getDoctrine()->getManager();
+		$repository = $em->getRepository('RwCoreBundle:Article');
+		// On récupère l'entité correspondant à l'id $id
+		$article = $repository->find($id);
+		$lesson = $article->getLesson();
+		// $lesson est une instance de Rw\CoreBundle\Entity\Lesson
+		// Ou null si aucune lesson n'a été trouvé avec l'id $id
+		if($article === null)
+		{
+			throw $this->createNotFoundException('Lesson[id='.$id.'] inexistante.');
+		}		
+		// On crée le formulaire
+		$form = $this->createForm(new ArticleType, $article);	
+		// On récupère la requête
+		$request = $this->get('request');
+		// On vérifie qu'elle est de type POST
+		if ($request->getMethod() == 'POST') {
+			// On fait le lien Requête <-> Formulaire
+			// À partir de maintenant, la variable $lesson contient les valeurs entrées dans le formulaire
+			$form->bind($request);
+			// On vérifie que les valeurs entrées sont correctes
+			if ($form->isValid()) {
+				// On l'enregistre notre objet $lesson dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($article);
+				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', "L'article a bien été modifié !");
+				// On redirige vers la page de visualisation de l'article modifié
+				return $this->redirect($this->generateUrl('rw_core_viewlesson', array('id' => $lesson->getId())));
+			}
+		}
+		// - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
+		// - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
+		return $this->render('RwCoreBundle:Core:editArticle.html.twig', array(
+		'form' => $form->createView(),
 		));
 	}
 }
