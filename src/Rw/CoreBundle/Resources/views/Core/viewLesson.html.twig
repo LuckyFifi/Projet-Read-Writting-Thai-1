@@ -12,18 +12,50 @@
 {% endblock %}
 
 {% block menu %}
-<div id="menu" class="col-sm-3 col-xs-12" >
-	<h3>Le menu leçon</h3>
-	<ul class="nav nav-pills nav-stacked">
-		<p>Coucou c'est le futur menu des leçons !</p>
-		<p>view.html.twig</p>
-		{% include "RwCoreBundle:Core:lessonMenu.html.twig" %}	
-	</ul>
-</div>
+	<div id="menu" class="col-sm-3 col-xs-12" >
+		<h3>Le menu leçon</h3>
+		<ul class="nav nav-pills nav-stacked">
+			<p>Coucou c'est le futur menu des leçons !</p>
+			<p>view.html.twig</p>
+			{% include "RwCoreBundle:Core:lessonMenu.html.twig" %}	
+		</ul>
+	</div>
 {% endblock %}
 
 {% block body %}
-<div id="content" class="col-sm-9 col-xs-12" >
-	{% include "RwCoreBundle:Core:lesson.html.twig" %}
-</div>
+	<div id="content" class="col-sm-9 col-xs-12" >		
+		<p><br /></p>
+		{% if is_granted('ROLE_ADMIN') %}
+			{% include "RwCoreBundle:Core:menuadminlesson.html.twig" %}
+			<p></p>
+		{% endif %}
+			
+		<div class="well">	
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sommaire</h3>
+				</div>
+				<div class="panel-body">
+					{% set articles = lesson.articles %}
+					{% for article in articles %}
+						<p>{{ article.title|raw }}</p></li>
+					{% endfor %}			
+				</div>
+			</div>
+			
+			<div id="bloc_section_lesson">				
+				{% for article in articles %}		
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">{{ article.title|raw }}</h3>
+						</div>
+						<div class="panel-body">
+							{{ include({ 'content' :article.content }) }}
+							{% include "RwCoreBundle:Core:menuadminarticle.html.twig" %}
+						</div>
+					</div>				
+				{% endfor %}					
+			</div>
+		</div>
+	</div>
 {% endblock %}
