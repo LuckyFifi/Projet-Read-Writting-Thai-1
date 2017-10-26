@@ -1,5 +1,5 @@
 {# src/Rw/CoreBundle/Resources/views/Core/addLesson.html.twig #}
-{# ajouter une lesson CoreBundle niveau 3 #}
+{# ajouter une lesson CoreBundle #}
 
 {% extends "RwCoreBundle::layout.html.twig" %}
 
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block title_bundle %}
-	Ajouter une leçon - site lire et écrire le thaï - CoreBundle niveau 2.
+	Administrateur
 {% endblock %}
 
 {% block menu %}
@@ -24,6 +24,6 @@
 <div id="content" class="col-sm-9 col-xs-12" >
 	<h2>Ajouter une leçon</h2>
 	</br>
-	{% include "RwCoreBundle:Core:formulaire.html.twig" %}
+	{% include "RwCoreBundle:Core:formLesson.html.twig" %}
 </div>
 {% endblock %}
