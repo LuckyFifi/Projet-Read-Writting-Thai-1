@@ -16,14 +16,6 @@ class LessonType extends AbstractType
     {
         $builder
             ->add('title',     'text')
-            ->add('summary',   'textarea', array('required' => false))
-            ->add('content',   'text', array('required' => false))
-			->add('title1',    'text', array('required' => false))
-			->add('title2',    'text', array('required' => false))
-			->add('title3',    'text', array('required' => false))
-			->add('title4',    'text', array('required' => false))
-			->add('title5',    'text', array('required' => false))
-			->add('title6',    'text', array('required' => false))
 			->add('save',      'submit')
         ;
     }

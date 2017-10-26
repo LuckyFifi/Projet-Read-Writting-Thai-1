@@ -19,11 +19,9 @@
 {% block body %}
 <div id="content" class="col-sm-9 col-xs-12" >
 	<h2>Confirmez la suppression de la leçon : </h2>
-	<h2>{{ lesson.title }}</h2>
 
 	<div class="well">
-		{{ lesson.title1 }}
-		{{ lesson.article1 }}
+		{{ lesson.title }}
 	</div>
 		
 	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
