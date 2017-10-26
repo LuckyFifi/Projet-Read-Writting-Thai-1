@@ -1,10 +1,14 @@
 {# src/Rw/CoreBundle/Resources/views/Core/deleteLesson.html.twig #}
-{# supprimer une lessons CoreBundle niveau 3 #}
+{# supprimer une lessons CoreBundle #}
 
 {% extends "RwCoreBundle::layout.html.twig" %}
 
 {% block title %}
 	Confirmez le suppression de la leçon - {{ parent() }}
+{% endblock %}
+
+{% block title_bundle %}
+	Administrateur
 {% endblock %}
 
 {% block menu %}	
