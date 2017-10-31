@@ -12,7 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Consonant
 {
-    /**
+	/**
+	 * @ORM\ManyToOne(targetEntity="Rw\CoreBundle\Entity\Lesson",
+	 inversedBy="consonants")
+	 */
+	private $lesson;
+	
+	/**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -178,5 +184,28 @@ class Consonant
     public function getDraw()
     {
         return $this->draw;
+    }
+
+    /**
+     * Set lesson
+     *
+     * @param \Rw\CoreBundle\Entity\Lesson $lesson
+     * @return Consonant
+     */
+    public function setLesson(\Rw\CoreBundle\Entity\Lesson $lesson = null)
+    {
+        $this->lesson = $lesson;
+
+        return $this;
+    }
+
+    /**
+     * Get lesson
+     *
+     * @return \Rw\CoreBundle\Entity\Lesson 
+     */
+    public function getLesson()
+    {
+        return $this->lesson;
     }
 }

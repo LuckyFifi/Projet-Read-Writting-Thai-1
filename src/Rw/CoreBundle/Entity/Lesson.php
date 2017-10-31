@@ -19,6 +19,11 @@ class Lesson
 	private $articles; // Notez le « s », une lesson est liée à plusieurs articles
 	
 	/**
+	 * @ORM\OneToMany(targetEntity="Rw\CoreBundle\Entity\Consonant", mappedBy="lesson")
+	 */
+	private $consonants; // Notez le « s », une lesson est liée à plusieurs consonants
+	
+	/**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -75,6 +80,7 @@ class Lesson
     public function __construct()
     {
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->consonants = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -112,4 +118,37 @@ class Lesson
         return $this->articles;
     }
 
+
+    /**
+     * Add consonant
+     *
+     * @return Lesson
+     */
+    public function addConsonant(Consonant $consonant)
+    {
+        $this->consonants[] = $consonants;
+		 
+		$consonant->setLesson($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove consonant
+     *
+     */
+    public function removeConsonant(Consonant $consonant)
+    {
+        $this->consonants->removeElement($consonant);
+    }
+
+    /**
+     * Get consonants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConsonants()
+    {
+        return $this->consonants;
+    }
 }
