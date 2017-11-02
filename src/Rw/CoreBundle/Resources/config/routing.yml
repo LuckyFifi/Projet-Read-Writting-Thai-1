@@ -38,3 +38,8 @@ rw_core_editarticle:
     defaults: { _controller: RwCoreBundle:Core:editArticle }
     requirements:
         id:    \d+
+rw_core_addconsonant:
+    path:  /consonant/{id}
+    defaults: { _controller: RwCoreBundle:Core:addConsonant }
+    requirements:
+        id:    \d+	

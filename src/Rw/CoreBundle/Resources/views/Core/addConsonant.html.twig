@@ -1,0 +1,29 @@
+{# src/Rw/CoreBundle/Resources/views/Core/addConsonant.html.twig #}
+{# ajouter une consonne CoreBundle #}
+
+{% extends "RwCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une consonne - {{ parent() }}
+{% endblock %}
+
+{% block title_bundle %}
+	Administrateur
+{% endblock %}
+
+{% block menu %}
+<div id="menu" class="col-sm-3 col-xs-12" >
+	<h3>Le menu leçon</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwCoreBundle:Core:lessonMenu.html.twig" %}
+	</ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div id="content" class="col-sm-9 col-xs-12" >
+	<h2>Ajouter une consonne</h2>
+	</br>
+	{% include "RwCoreBundle:Core:formConsonant.html.twig" %}
+</div>
+{% endblock %}

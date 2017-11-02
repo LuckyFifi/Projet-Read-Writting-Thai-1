@@ -8,8 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Rw\CoreBundle\Entity\Lesson;
 use Rw\CoreBundle\Entity\Article;
+use Rw\CoreBundle\Entity\Consonant;
+use Rw\CoreBundle\Entity\Draw;
 use Rw\CoreBundle\Form\LessonType;
 use Rw\CoreBundle\Form\ArticleType;
+use Rw\CoreBundle\Form\ConsonantType;
+use Rw\CoreBundle\Form\DrawType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
@@ -216,6 +220,35 @@ class CoreController extends Controller
 		// - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
 		return $this->render('RwCoreBundle:Core:editArticle.html.twig', array(
 		'form' => $form->createView(),
+		));
+	}
+	
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+     */ 
+	public function addConsonantAction(Lesson $lesson)
+	{
+		$consonant = new Consonant();		
+		$consonant->setLesson($lesson);
+		// création de la liste des articles pour la vue twig
+		$list_consonants = $lesson->getConsonants(); 
+		$form = $this->createForm(new ConsonantType, $consonant);
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			if ($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($consonant);
+				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', "La consonne a bien été enregistrée !");
+				return $this->redirect($this->generateUrl('rw_core_viewlesson', array('id' => $lesson->getId())));
+			}
+		}
+		return $this->render('RwCoreBundle:Core:addConsonant.html.twig', array(
+		'form' => $form->createView(),
+		'lesson' => $lesson,
+		'consonants' => $list_consonants 
 		));
 	}
 }
