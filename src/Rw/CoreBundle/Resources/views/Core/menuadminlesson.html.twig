@@ -1,8 +1,9 @@
-{# src/Rw/CoreBundle/Resources/views/Core/menuadminlesson.html.twig #}
+{# src/Rw/CoreBundle/Resources/views/Core/menuAdminLesson.html.twig #}
 
 {% if is_granted('ROLE_ADMIN') %}
 	<a type="button" class="btn btn-success"  href="{{ path('rw_core_edit', { 'id': lesson.id }) }}">Modifiez la leçon</a>
 	<a type="button" class="btn btn-danger"  href="{{ path('rw_core_del', { 'id': lesson.id }) }}">Supprimez la leçon</a>
 	<a type="button" class="btn btn-primary"  href="{{ path('rw_core_addarticle', { 'id': lesson.id }) }}">Ajoutez un article</a>
+	<a type="button" class="btn btn-primary"  href="{{ path('rw_core_addconsonant', { 'id': lesson.id }) }}">Ajoutez une consonne</a>
 {% endif %}
 
