@@ -1,7 +1,5 @@
 {# src/Rw/CoreBundle/Resources/views/Core/formConsonant.html.twig #}
 
-<h3>Formulaire des leçons : formLesson.html.twig</h3>
-
 <div class="well">
 	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 	
@@ -59,15 +57,39 @@
 			</div>
 		</div>
 		
-		{# Génération du label + error + widget pour un champ #}
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Image Draw</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.draw.alt, "Alt image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.draw.alt) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.draw.alt, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.draw.url, "URL image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.draw.url) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.draw.url, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
 		{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-		{# Génération automatique des champs pas encore écrits.
-		Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-		et tous les champs cachés (type « hidden »). #}
-		{{ form_rest(form) }}
 
 	{# Fermeture de la balise <form> du formulaire HTML #}
 	{{ form_end(form) }}
