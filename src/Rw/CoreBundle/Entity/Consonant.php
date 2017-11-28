@@ -36,6 +36,16 @@ class Consonant
      * @ORM\OneToOne(targetEntity="Rw\CoreBundle\Entity\Picture", cascade={"persist"})
      */
     private $picture;
+	
+	/**
+     * @ORM\OneToOne(targetEntity="Rw\CoreBundle\Entity\Police", cascade={"persist"})
+     */
+    private $police;
+	
+	/**
+     * @ORM\OneToOne(targetEntity="Rw\CoreBundle\Entity\Police2", cascade={"persist"})
+     */
+    private $police2;
 
     /**
      * @var string
@@ -264,5 +274,51 @@ class Consonant
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Set police
+     *
+     * @param \Rw\CoreBundle\Entity\Police $police
+     * @return Consonant
+     */
+    public function setPolice(\Rw\CoreBundle\Entity\Police $police = null)
+    {
+        $this->police = $police;
+
+        return $this;
+    }
+
+    /**
+     * Get police
+     *
+     * @return \Rw\CoreBundle\Entity\Police 
+     */
+    public function getPolice()
+    {
+        return $this->police;
+    }
+
+    /**
+     * Set police2
+     *
+     * @param \Rw\CoreBundle\Entity\Police2 $police2
+     * @return Consonant
+     */
+    public function setPolice2(\Rw\CoreBundle\Entity\Police2 $police2 = null)
+    {
+        $this->police2 = $police2;
+
+        return $this;
+    }
+
+    /**
+     * Get police2
+     *
+     * @return \Rw\CoreBundle\Entity\Police2 
+     */
+    public function getPolice2()
+    {
+        return $this->police2;
     }
 }
