@@ -31,6 +31,11 @@ class Consonant
      * @ORM\OneToOne(targetEntity="Rw\CoreBundle\Entity\Draw", cascade={"persist"})
      */
     private $draw;
+	
+	/**
+     * @ORM\OneToOne(targetEntity="Rw\CoreBundle\Entity\Picture", cascade={"persist"})
+     */
+    private $picture;
 
     /**
      * @var string
@@ -60,7 +65,13 @@ class Consonant
      */
     private $final;
 
-
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="classe", type="string", length=255)
+     */
+    private $classe;
+	
     /**
      * Get id
      *
@@ -207,5 +218,51 @@ class Consonant
     public function getLesson()
     {
         return $this->lesson;
+    }
+
+    /**
+     * Set classe
+     *
+     * @param string $classe
+     * @return Consonant
+     */
+    public function setClasse($classe)
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * Get classe
+     *
+     * @return string 
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param \Rw\CoreBundle\Entity\Picture $picture
+     * @return Consonant
+     */
+    public function setPicture(\Rw\CoreBundle\Entity\Picture $picture = null)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \Rw\CoreBundle\Entity\Picture 
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

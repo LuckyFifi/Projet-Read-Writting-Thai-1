@@ -1,15 +1,16 @@
 <?php
-// Image comment dessiner la lettre
+
+// Image d'illustration de la lettre
 namespace Rw\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Draw
+ * Picture
  *
- * @ORM\Table(name="draw")
- * @ORM\Entity(repositoryClass="Rw\CoreBundle\Entity\DrawRepository")
+ * @ORM\Table(name="picture")
+ * @ORM\Entity(repositoryClass="Rw\CoreBundle\Entity\PictureRepository")
  */
-class Draw
+class Picture
 {
     /**
      * @var integer
@@ -49,7 +50,7 @@ class Draw
      * Set alt
      *
      * @param string $alt
-     * @return Draw
+     * @return Picture
      */
     public function setAlt($alt)
     {
@@ -71,7 +72,7 @@ class Draw
      * Set url
      *
      * @param string $url
-     * @return Draw
+     * @return Picture
      */
     public function setUrl($url)
     {
