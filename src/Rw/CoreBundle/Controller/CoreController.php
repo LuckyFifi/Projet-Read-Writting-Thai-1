@@ -10,10 +10,16 @@ use Rw\CoreBundle\Entity\Lesson;
 use Rw\CoreBundle\Entity\Article;
 use Rw\CoreBundle\Entity\Consonant;
 use Rw\CoreBundle\Entity\Draw;
+use Rw\CoreBundle\Entity\Picture;
+use Rw\CoreBundle\Entity\Police;
+use Rw\CoreBundle\Entity\Police2;
 use Rw\CoreBundle\Form\LessonType;
 use Rw\CoreBundle\Form\ArticleType;
 use Rw\CoreBundle\Form\ConsonantType;
 use Rw\CoreBundle\Form\DrawType;
+use Rw\CoreBundle\Form\PictureType;
+use Rw\CoreBundle\Form\PoliceType;
+use Rw\CoreBundle\Form\Police2Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 

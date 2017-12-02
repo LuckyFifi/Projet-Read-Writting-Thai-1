@@ -57,6 +57,18 @@
 			</div>
 		</div>
 		
+		<div class="form-group">
+			{# Génération du label. #}
+			{{ form_label(form.classe, "Classe de la consonne", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+			{# Affichage des erreurs pour ce champ précis. #}
+			{{ form_errors(form.classe) }}
+		
+			<div class="col-sm-3">
+				{# Génération de l'input. #}
+				{{ form_widget(form.classe, {'attr': {'class': 'form-control'}}) }}
+			</div>
+		</div> 
+		
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Image Draw</h3>
@@ -87,6 +99,100 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Image Picture</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.picture.alt, "Alt image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.picture.alt) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.picture.alt, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.picture.url, "URL image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.picture.url) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.picture.url, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Image Police</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.police.alt, "Alt image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.police.alt) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.police.alt, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.police.url, "URL image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.police.url) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.police.url, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Image Police2</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.police2.alt, "Alt image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.police2.alt) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.police2.alt, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			
+				<div class="form-group">
+					{# Génération du label. #}
+					{{ form_label(form.police2.url, "URL image", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}	
+					{# Affichage des erreurs pour ce champ précis. #}
+					{{ form_errors(form.police2.url) }}
+				
+					<div class="col-sm-6">
+						{# Génération de l'input. #}
+						{{ form_widget(form.police2.url, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		
 		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
 		{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}

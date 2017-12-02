@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ConsonantType extends AbstractType
+class Police2Type extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,20 +15,8 @@ class ConsonantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('letter'  , 'text')
-            ->add('name'    , 'text')
-            ->add('initial' , 'text')
-            ->add('final'   , 'text')
-			->add('classe'   , 'text')
-			->add('draw'	, new DrawType(), array(
-			'required' => false))
-			->add('picture'	, new PictureType(), array(
-			'required' => false))
-			->add('police'	, new PoliceType(), array(
-			'required' => false))
-			->add('police2'	, new Police2Type(), array(
-			'required' => false))
-			->add('save',      'submit')
+            ->add('alt', 'text')
+            ->add('url', 'text')
         ;
     }
     
@@ -38,7 +26,7 @@ class ConsonantType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rw\CoreBundle\Entity\Consonant'
+            'data_class' => 'Rw\CoreBundle\Entity\Police2'
         ));
     }
 
@@ -47,6 +35,6 @@ class ConsonantType extends AbstractType
      */
     public function getName()
     {
-        return 'rw_corebundle_consonant';
+        return 'rw_corebundle_police2';
     }
 }
