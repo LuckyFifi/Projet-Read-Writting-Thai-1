@@ -257,4 +257,16 @@ class CoreController extends Controller
 		'consonants' => $list_consonants 
 		));
 	}
+	
+	public function listConsonantAction()
+	// Affichage des consonnes
+	{
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$listConsonants = $em->getRepository('RwCoreBundle:Consonant')
+					         ->findAll();
+		return $this->render('RwCoreBundle:Core:listConsonant.html.twig', array(
+			'consonants' 	=> $listConsonants,
+		));
+	}
 }

@@ -43,3 +43,6 @@ rw_core_addconsonant:
     defaults: { _controller: RwCoreBundle:Core:addConsonant }
     requirements:
         id:    \d+	
+rw_core_listconsonant:
+    path:  /listConsonant
+    defaults: { _controller: RwCoreBundle:Core:listConsonant }

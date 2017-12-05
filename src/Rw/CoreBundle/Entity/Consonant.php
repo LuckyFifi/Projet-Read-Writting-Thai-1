@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Consonant
  *
  * @ORM\Table(name="consonant")
- * @ORM\Entity(repositoryClass="Rw\CoreBundle\Entity\consonantRepository")
+ * @ORM\Entity(repositoryClass="Rw\CoreBundle\Entity\ConsonantRepository")
  */
 class Consonant
 {
