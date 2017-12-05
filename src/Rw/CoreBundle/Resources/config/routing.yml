@@ -46,3 +46,6 @@ rw_core_addconsonant:
 rw_core_listconsonant:
     path:  /listConsonant
     defaults: { _controller: RwCoreBundle:Core:listConsonant }
+rw_core_indexregle:
+    path:  /indexRegle
+    defaults: { _controller: RwCoreBundle:Regle:index }

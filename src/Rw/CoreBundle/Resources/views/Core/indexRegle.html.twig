@@ -1,0 +1,28 @@
+{# src/Rw/CoreBundle/Resources/views/Core/indexRegle.html.twig #}
+{# index du site CoreBundle niveau 3 #}
+
+{% extends "RwCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Les règles de la langue thaïe
+{% endblock %}
+
+{% block title_bundle %}
+	Les règles
+{% endblock %}
+
+{% block menu %}
+<div id="menu" class="col-sm-3 col-xs-12" >
+	<h3>Le menu du site</h3>
+	<ul class="nav nav-pills nav-stacked">
+		{% include "RwCoreBundle:Core:coremenu.html.twig" %}
+	</ul>
+</div>
+{% endblock %}
+
+{% block body %}	
+	<div id="content" class="col-sm-9 col-xs-12" >
+		<h3>Sommaire :</h3>
+		<h3><a href="{{ path('rw_core_listconsonant') }}">Les consonnes.</a></h3>
+	</div>
+{% endblock %}
